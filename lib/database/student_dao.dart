@@ -11,13 +11,19 @@ class StudentDao extends DatabaseAccessor<StudentDatabse> with _$StudentDaoMixin
     return  await into(studentTable).insert(s);
   } 
 
-  Stream<List<Student>> getAllStudent({OrderingMode? mode}){
-    if(mode == null){
+  Stream<List<Student>> getAllStudent({OrderingMode? mode,bool? over25}){
+    if(mode == null && over25 == null){
       return select(studentTable).watch();
+      
+    }
+    else if(over25 != null && over25 == true){
+      return (select(studentTable)
+       ..where((StudentTable) => studentTable.age.isBiggerOrEqualValue(25))
+      ).watch();
     }
     else {
     return (select(studentTable)
-    ..orderBy([(studentTable) => OrderingTerm(expression: studentTable.age,mode: mode)])
+    ..orderBy([(studentTable) => OrderingTerm(expression: studentTable.age,mode: mode!)])
     ) .watch();
     }
   }

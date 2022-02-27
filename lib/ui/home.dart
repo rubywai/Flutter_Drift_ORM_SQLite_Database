@@ -46,12 +46,18 @@ class _HomeState extends State<Home> {
              _students = studentDao.getAllStudent(mode: db.OrderingMode.desc);
            });
          }
+         else if(str == 'over25'){
+           setState(() {
+             _students = studentDao.getAllStudent(over25: true);
+           });
+         }
         },
         itemBuilder: (context){
          return   [
             const PopupMenuItem(child: Text('Default'),value: 'default',),
             const PopupMenuItem(child: Text('Age by Accending'),value: 'aesc',),
-            const PopupMenuItem(child: Text('Age by Decending'),value: 'desc',)
+            const PopupMenuItem(child: Text('Age by Decending'),value: 'desc',),
+            const PopupMenuItem(child: Text('Age over 25'),value: 'over25', )
           ];
         },
       ),
