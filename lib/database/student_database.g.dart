@@ -334,6 +334,7 @@ class $StudentTableTable extends StudentTable
 abstract class _$StudentDatabse extends GeneratedDatabase {
   _$StudentDatabse(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   late final $StudentTableTable studentTable = $StudentTableTable(this);
+  late final StudentDao studentDao = StudentDao(this as StudentDatabse);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override

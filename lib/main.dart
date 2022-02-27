@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 void main() {
   StudentDatabse studentDatabse = StudentDatabse();
-  Get.put(studentDatabse);
+  Get.put(studentDatabse.studentDao);
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {

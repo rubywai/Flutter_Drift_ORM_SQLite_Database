@@ -1,5 +1,6 @@
 
 import 'package:drift/drift.dart' as drift;
+import 'package:drift_database/database/student_dao.dart';
 import 'package:drift_database/database/student_database.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,7 +15,7 @@ class AddStudent extends StatefulWidget {
 
 class _AddStudentState extends State<AddStudent> {
   GlobalKey<FormState> _key = GlobalKey();
-  StudentDatabse studentDatabse = Get.find();
+  StudentDao studentDao = Get.find();
   String? name, address, phone,age;
   DateTime? birthday;
   @override
@@ -133,7 +134,7 @@ class _AddStudentState extends State<AddStudent> {
                   else if (_key.currentState != null &&
                       _key.currentState!.validate()) {
                         _key.currentState?.save();
-                        studentDatabse.insertStudent(
+                        studentDao.insertStudent(
                          StudentTableCompanion(
                            name: drift.Value(name ?? ''),
                            address: drift.Value(address ?? ''),
